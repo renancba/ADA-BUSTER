@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Lista de Filmes</title>
+</head>
+<body>
+<div style="margin: 10px;"></div>
+<h1>Lista de Filmes</h1>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Título</th>
+        <th scope="col">Sinopse</th>
+        <th scope="col">Duração</th>
+        <th scope="col">Avaliação</th>
+        <th scope="col">Imagem</th>
+        <th scope="col">Curtidas</th>
+        <th scope="col">Like</th>
+        <th scope="col">Dislike</th>
+        <th scope="col">Editar</th>
+        <th scope="col">Excluir</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="filme : ${filmes}">
+        <td th:text="${filme.id}"></td>
+        <td th:text="${filme.titulo}"></td>
+        <td th:text="${filme.sinopse}"></td>
+        <td th:text="${filme.minutos+' min'}"></td>
+        <td th:text="${filme.imdb}"></td>
+        <td><img height="160px" th:src="${filme.imagem}" /></td>
+        <td th:text="'Likes: ' + ${filme.like} + '    ' +'Dislikes: ' + ${filme.dislike}"></td>
+        <td><a th:href="@{/filmes/like/{id}(id=${filme.id})}">Gostei</a></td>
+        <td><a th:href="@{/filmes/dislike/{id}(id=${filme.id})}">Não Gostei</a></td>
+        <td><a th:href="@{/filmes/editar/{id}(id=${filme.id})}">Editar</a></td>
+        <td><a th:href="@{/filmes/remover/{id}(id=${filme.id})}" onclick="return confirm('Tem certeza que deseja excluir este produto?')">Excluir</a></td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="@{/filmes/novo}" class="btn btn-primary" role="button" data-bs-toggle="button">Adicionar novo filme</a>
+<div style="margin: 100px;"></div>
+<h1>Lista de Notícias</h1>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Título</th>
+        <th scope="col">Descrição</th>
+        <th scope="col">Autor</th>
+        <th scope="col">Imagem</th>
+        <th scope="col">Editar</th>
+        <th scope="col">Excluir</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="noticia : ${noticias}">
+        <td th:text="${noticia.id}"></td>
+        <td th:text="${noticia.titulo}"></td>
+        <td th:text="${noticia.descricao}"></td>
+        <td th:text="${noticia.autor}"></td>
+        <td><img height="160px" th:src="${noticia.imagem}" /></td>
+        <td><a th:href="@{/noticias/editar/{id}(id=${noticia.id})}">Editar</a></td>
+        <td><a th:href="@{/noticias/remover/{id}(id=${noticia.id})}" onclick="return confirm('Tem certeza que deseja excluir este produto?')">Excluir</a></td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="@{/noticias/novo}" class="btn btn-primary" role="button" data-bs-toggle="button">Adicionar nova notícia</a>
+</body>
+</html>

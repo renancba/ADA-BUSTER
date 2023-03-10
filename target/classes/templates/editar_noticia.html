@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Editar Notícia</title>
+</head>
+<body>
+<h1>Editar Notícia</h1>
+<form th:object="${noticia}" th:action="@{/noticias/editar}" method="post">
+  <label for="titulo">Titulo:</label>
+  <input type="text" id="titulo" name="titulo" th:field="*{titulo}"/>
+  <br>
+  <label for="autor">Autor:</label>
+  <input type="text" id="autor" name="autor" th:field="*{autor}"/>
+  <br>
+  <label for="descricao">Descrição:</label>
+  <input type="text" id="descricao" name="descricao" th:field="*{descricao}"/>
+  <br>
+  <label for="imagem">Imagem:</label>
+  <input type="text" id="imagem" name="imagem" th:field="*{imagem}"/>
+  <br>
+  <button type="submit">Salvar</button>
+  <a th:href="@{/filmes}">Cancelar</a>
+</form>
+</body>
+</html>
